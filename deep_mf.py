@@ -43,7 +43,7 @@ def train_model(input_counts, output_counts, hidden_units=128, batch_size=100):
     py_x = model(X, w_h1, w_h2, w_o, p_keep_input, p_keep_hidden)
 
     # Define cost and training procedure
-    cost = tf.reduce_mean(tf.nn.weighted_cross_entropy_with_logits(py_x, Y, 100))
+    cost = tf.reduce_mean(tf.nn.weighted_cross_entropy_with_logits(py_x, Y, pos_weight))
     train_op = tf.train.AdagradOptimizer(0.1).minimize(cost)
     predict_op = tf.argmax(py_x, 1)
 
